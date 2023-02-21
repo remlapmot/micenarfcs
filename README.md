@@ -1,23 +1,15 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-[MICE: Multivariate Imputation by Chained Equations](http://stefvanbuuren.github.io/mice/)
-==========================================================================================
+# A fork of a fork
 
-The [`mice`](https://cran.r-project.org/package=mice) package implements a method to deal with missing data. The package creates multiple imputations (replacement values) for multivariate missing data. The method is based on Fully Conditional Specification, where each incomplete variable is imputed by a separate model. The `MICE` algorithm can impute mixes of continuous, binary, unordered categorical and ordered categorical data. In addition, MICE can impute continuous two-level data, and maintain consistency between imputations by means of passive imputation. Many diagnostic plots are implemented to inspect the quality of the imputations.
+This is a fork of the <https://github.com/moreno-betancur/mice> repository which enables NARFCS in the **mice** package.
+That repository is itself a fork of the [**mice**](https://github.com/amices/mice/) repository.
 
-Installation
-------------
+## Why do this?
 
-The `mice` package can be installed from CRAN as follows:
+This fork renames the package to **micenarfcs**. This means that a user can have both the official **mice** package and this package installed within R at the same time (and that this package no longer overwrites the official version of **mice** on installation).
 
-``` r
-install.packages("mice")
-```
-
-The latest version is can be installed from GitHub as follows:
+## Installation
 
 ``` r
-install.packages("devtools")
-devtools::install_github(repo = "stefvanbuuren/mice")
+# install.packages("remotes") # uncomment on first run
+remotes::install_github("remlapmot/micenarfcs")
 ```
-
-See [MICE: Multivariate Imputation by Chained Equations](http://stefvanbuuren.github.io/mice/) for more details.
