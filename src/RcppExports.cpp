@@ -5,9 +5,14 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // matcher
 IntegerVector matcher(NumericVector obs, NumericVector mis, int k);
-RcppExport SEXP _mice_matcher(SEXP obsSEXP, SEXP misSEXP, SEXP kSEXP) {
+RcppExport SEXP _micenarfcs_matcher(SEXP obsSEXP, SEXP misSEXP, SEXP kSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -17,4 +22,14 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(matcher(obs, mis, k));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_micenarfcs_matcher", (DL_FUNC) &_micenarfcs_matcher, 3},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_micenarfcs(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }
